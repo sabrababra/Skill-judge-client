@@ -1,3 +1,4 @@
+import CategoryCard from '../../SharedComponent/CategoryCard/CategoryCard';
 import EasyToStart from './EasyToStart/EasyToStart';
 import EnrollNow from './EnrollNow/EnrollNow';
 import Services from './Services/Services';
@@ -10,8 +11,10 @@ const Home = () => {
             <UseOurApp />
             <EasyToStart />
             <EnrollNow />
+            <CategoryCard/>
             <TopQuestions />
             <Services/>
+           
         </div>
     );
 };

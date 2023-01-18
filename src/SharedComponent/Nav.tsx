@@ -1,13 +1,31 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthProvider';
 
 const Nav = () => {
+    const { user, signOutUser }: any = useAuth();
+
+    const handleLogout = () => {
+        signOutUser()
+            .then(() => {
+
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
     const navItems = <>
         <li><Link to={''}>Home</Link></li>
         <li><Link to={''}>Categories</Link></li>
         <li><Link to={''}>Quiz</Link></li>
         <li><Link to={''}>About Us</Link></li>
-        <li><Link to={''}>Login</Link></li>
+        {
+            user?.uid ? <>
+                <li><Link onClick={handleLogout} to="">Logout</Link></li>
+            </>
+                :
+                <li><Link to={'/login'}>Login</Link></li>
+        }
     </>
 
     return (
@@ -21,7 +39,7 @@ const Nav = () => {
                         {navItems}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">Skill-Judge</a>
+                <Link to={''} className="btn btn-ghost normal-case text-xl">Skill-Judge</Link>
             </div>
             <div className="navbar-end hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

@@ -26,7 +26,7 @@ interface IBook {
 
 
 	return (
-		<div className=" mx-3 md:mx-20 h-[100vh] ">
+		<div className=" mx-3 md:mx-20 h-[60vh] ">
 			<h3 className="text-3xl">Payment for {booking.title}</h3>
 			<p className="text-xl mt-4 text-violet-400">
                 Please pay <strong>{booking.price}</strong> for get { booking.title}{" "}

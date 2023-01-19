@@ -16,6 +16,7 @@ const Nav = () => {
 
     const navItems = <>
         <li><Link to={''}>Home</Link></li>
+        <li><Link to={'qna'}>QnA</Link></li>
         <li><Link to={''}>Categories</Link></li>
         <li><Link to={''}>Quiz</Link></li>
         <li><Link to={''}>About Us</Link></li>

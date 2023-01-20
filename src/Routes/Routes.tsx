@@ -2,19 +2,74 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 
 import Home from "../pages/Home/Home";
-
+import Booking from "../pages/Home/Booking/Booking";
+import Login from "../pages/login/Login";
+import Signup from "../pages/login/Signup";
+import PrivateRoute from "./PrivateRoute";
+import TopQuestion from "../pages/Home/TopQuestions/TopQuestion";
+import QuestionAns from "../pages/QuestionAns/QuestionAns";
+import NotFound from "../pages/404";
+import SingleQnA from "../pages/QuestionAns/SingleQ
 
 export const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <Main/>,
+		element: <Main />,
 		children: [
 			{
 				path: "/",
-				element: <Home/>,
+				element: <Home />,
 			},
-			
-			
+			{
+				path: "/book/:id",
+				element: (
+					<PrivateRoute>
+						<Booking />
+					</PrivateRoute>
+				),
+				loader: ({ params }) =>
+					fetch(`${process.env.REACT_APP_API_URL}/book/${params.id}`),
+			},
+			{
+				path: "/topquestions/:id",
+				element: (
+					<PrivateRoute>
+						<TopQuestion />
+					</PrivateRoute>
+				),
+				loader: ({ params }) =>
+					fetch(`${process.env.REACT_APP_API_URL}/topquestions/${params.id}`),
+			},
+			{
+				path: "qna",
+				loader: () => fetch("https://skill-judge-server.vercel.app/qna"),
+				element: <QuestionAns></QuestionAns>,
+			},
+			{
+				path: "/login",
+				element: <Login />
+			},
+			{
+				path: '/signup',
+
+				element: <Signup />
+			}
+			element: <Signup/>},
+            {
+        path: "/qna",
+        loader: () => fetch(`${process.env.REACT_APP_API_URL}/qna`),
+        element: <QuestionAns></QuestionAns>,
+      },
+      {
+        path: "/singleqna/:id",
+        loader: ({ params }) =>
+          fetch(`${process.env.REACT_APP_API_URL}/qnasingle/${params.id}`),
+        element:<SingleQnA></SingleQnA>,
+      },
 		],
 	},
+	{
+		path: '*',
+		element: <NotFound></NotFound>
+	}
 ]);

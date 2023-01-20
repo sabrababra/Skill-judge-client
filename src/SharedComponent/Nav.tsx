@@ -1,51 +1,78 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthProvider';
+import { useState } from 'react';
 
 const Nav = () => {
+    const { user, signOutUser }: any = useAuth();
+    const [isOpen, setIsOpen] = useState<Boolean>(false);
+
+    const handleLogout = () => {
+        signOutUser()
+            .then(() => {
+
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    const navItems = <>
+        <li><Link to={''}>Home</Link></li>
+        <li><Link to={'qna'}>QnA</Link></li>
+        <li><Link to={''}>Categories</Link></li>
+        <li><Link to={''}>Quiz</Link></li>
+        <li><Link to={''}>About Us</Link></li>
+        {
+            user?.uid ? <>
+                <li><Link onClick={handleLogout} to="">Logout</Link></li>
+            </>
+                :
+                <li><Link to={'/login'}>Login</Link></li>
+        }
+    </>
+
     return (
-        <div className="navbar bg-base-100">
-            <div className="navbar-start">
-                <div className="dropdown">
-                    <label tabIndex={0} className="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                    </label>
-                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><a>Item 1</a></li>
-                        <li tabIndex={0}>
-                            <a className="justify-between">
-                                Parent
-                                <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-                            </a>
-                            <ul className="p-2">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </li>
-                        <li><a>Item 3</a></li>
-                    </ul>
-                </div>
-                <a className="btn btn-ghost normal-case text-xl">Skill Judge</a>
-            </div>
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
-                    <li><a>Item 1</a></li>
-                    <li tabIndex={0}>
-                        <a>
-                            Parent
-                            <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
-                        </a>
-                        <ul className="p-2">
-                            <li><a>Submenu 1</a></li>
-                            <li><a>Submenu 2</a></li>
-                        </ul>
-                    </li>
-                    <li><a>Item 3</a></li>
-                </ul>
-            </div>
-            <div className="navbar-end">
-                <a className="btn">Get started</a>
-            </div>
-        </div>
-    );
+		<nav className="fixed bg-[#faf7f5] bg-opacity-30 backdrop-filter backdrop-blur-lg shadow-md  z-50 w-full px-6 py-3 flex justify-between items-center right-0 top-0 mb-20">
+				<div className="navbar-start flex">
+					<div className="dropdown">
+						<label
+							onClick={() => setIsOpen(!isOpen)}
+							tabIndex={0}
+							className="btn btn-ghost lg:hidden">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								className="inline-block w-5 h-5 stroke-current">
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									strokeWidth="2"
+									d="M4 6h16M4 12h16M4 18h16"></path>
+							</svg>
+						</label>
+						{isOpen && (
+							<ul
+								onClick={() => setIsOpen(!isOpen)}
+								tabIndex={1}
+								className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+								{navItems}
+							</ul>
+						)}
+					</div>
+					<Link
+						to="/"
+						className="btn btn-ghost normal-case text-slate-400 text-3xl">
+						Skill Judge
+					</Link>
+				</div>
+				<div className="navbar-end hidden  font-bold lg:flex">
+					<ul className="menu menu-horizontal p-0 text-slate-400">
+						{navItems}
+					</ul>
+				</div>
+			</nav>
+		);
 };
 
 export default Nav;

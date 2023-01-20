@@ -3,7 +3,7 @@ import money from '../../../assets/money.jpg'
 
 const UseOurApp = () => {
     return (
-			<div className="grid grid-cols-1 items-center md:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5 lg:gap-16 lg:20">
+			<div className="grid grid-cols-1 items-center md:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5 lg:gap-16 lg:20 pt-5 lg:pt-10">
 				<div className="lg:col-span-3">
 					<img src={money} className="w-full" alt="money" />
 				</div>

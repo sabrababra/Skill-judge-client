@@ -8,6 +8,7 @@ import Signup from "../pages/login/Signup";
 import PrivateRoute from "./PrivateRoute";
 import TopQuestion from "../pages/Home/TopQuestions/TopQuestion";
 import QuestionAns from "../pages/QuestionAns/QuestionAns";
+import NotFound from "../pages/404";
 
 export const router = createBrowserRouter([
 	{
@@ -39,18 +40,23 @@ export const router = createBrowserRouter([
 					fetch(`${process.env.REACT_APP_API_URL}/topquestions/${params.id}`),
 			},
 			{
-        path: "qna",
-        loader: () => fetch("https://skill-judge-server.vercel.app/qna"),
-        element: <QuestionAns></QuestionAns>,
-      },
+				path: "qna",
+				loader: () => fetch("https://skill-judge-server.vercel.app/qna"),
+				element: <QuestionAns></QuestionAns>,
+			},
 			{
 				path: "/login",
 				element: <Login />
 			},
 			{
 				path: '/signup',
-			element: <Signup/>}
+				element: <Signup />
+			}
 
-    ],
-  },
+		],
+	},
+	{
+		path: '*',
+		element: <NotFound></NotFound>
+	}
 ]);

@@ -18,6 +18,7 @@ const Nav = () => {
 
     const navItems = <>
         <li><Link to={''}>Home</Link></li>
+        <li><Link to={'qna'}>QnA</Link></li>
         <li><Link to={''}>Categories</Link></li>
         <li><Link to={''}>Quiz</Link></li>
         <li><Link to={''}>About Us</Link></li>
@@ -31,7 +32,7 @@ const Nav = () => {
     </>
 
     return (
-			<nav className="fixed bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg shadow-md  z-50 w-full px-6 py-3 flex justify-between items-center right-0 top-0 mb-20">
+		<nav className="fixed bg-[#faf7f5] bg-opacity-30 backdrop-filter backdrop-blur-lg shadow-md  z-50 w-full px-6 py-3 flex justify-between items-center right-0 top-0 mb-20">
 				<div className="navbar-start flex">
 					<div className="dropdown">
 						<label

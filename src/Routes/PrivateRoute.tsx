@@ -5,10 +5,10 @@ import { Navigate, useLocation } from "react-router-dom";
 import Spinner from "../SharedComponent/Spinner/Spinner";
 import { AuthContext } from "../contexts/AuthProvider";
 const PrivateRoute = ({ children }) => {
-	const { user, loading} = useContext(AuthContext);
+	const { user, loading }: any = useContext(AuthContext);
 	const location = useLocation();
 	if (loading) {
-		return <Spinner/>
+		return <Spinner />
 	}
 	if (user) {
 		return children;

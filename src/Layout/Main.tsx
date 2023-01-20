@@ -8,12 +8,14 @@ import Nav from '../SharedComponent/Nav';
 
 const Main = () => {
     return (
-        <div>
-           <Nav></Nav> 
-           <Outlet></Outlet>
-           <Footer></Footer>
-        </div>
-    );
+			<div>
+				<div className='pb-20'>
+					<Nav></Nav>
+				</div>
+				<Outlet></Outlet>
+				<Footer></Footer>
+			</div>
+		);
 };
 
 export default Main;

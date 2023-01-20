@@ -9,7 +9,8 @@ import PrivateRoute from "./PrivateRoute";
 import TopQuestion from "../pages/Home/TopQuestions/TopQuestion";
 import QuestionAns from "../pages/QuestionAns/QuestionAns";
 import NotFound from "../pages/404";
-import SingleQnA from "../pages/QuestionAns/SingleQ
+import SingleQnA from "../pages/QuestionAns/SingleQnA";
+
 
 export const router = createBrowserRouter([
 	{
@@ -53,9 +54,8 @@ export const router = createBrowserRouter([
 				path: '/signup',
 
 				element: <Signup />
-			}
-			element: <Signup/>},
-            {
+			},
+			{
         path: "/qna",
         loader: () => fetch(`${process.env.REACT_APP_API_URL}/qna`),
         element: <QuestionAns></QuestionAns>,

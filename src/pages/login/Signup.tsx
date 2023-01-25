@@ -77,40 +77,89 @@ const Signup = () => {
     }
 
     return (
-        <div className='w-full max-w-sm mx-auto shadow-xl p-8 rounded-md'>
-            <h2 className='text-xl'>Sign Up</h2>
-            <form onSubmit={handleSubmit(handleSignup)} className='form-control'>
+			<div className="grid grid-cols-1 items-center md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 pt-5 lg:pt-10 mb-5">
+				<div className="lg:col-span-2">
+					<img
+						src="https://i.ibb.co/JcL8bw4/sign-page-abstract-concept-illustration-enter-application-mobile-screen-user-login-form-website-page.jpg"
+						className="w-full"
+						alt="money"
+					/>
+				</div>
+				<div className="lg:col-span-2">
+					<div className="w-full max-w-sm mx-auto shadow-xl p-8 rounded-md">
+						<h2 className="text-xl">Sign Up</h2>
+						<form
+							onSubmit={handleSubmit(handleSignup)}
+							className="form-control">
+							{/* Name */}
+							<label className="label">
+								<span className="label-text">Name</span>
+							</label>
+							<input
+								type="text"
+								{...register("name", { required: "Name is required" })}
+								className="input input-bordered w-full max-w-sm"
+							/>
+							{errors.name && (
+								<p className="text-red-700">{errors.name?.message}</p>
+							)}
 
-                {/* Name */}
-                <label className="label">
-                    <span className="label-text">Name</span>
-                </label>
-                <input type="text" {...register("name", { required: "Name is required" })} className="input input-bordered w-full max-w-sm" />
-                {errors.name && <p className='text-red-700'>{errors.name?.message}</p>}
+							{/* Email */}
+							<label className="label">
+								<span className="label-text">Email</span>
+							</label>
+							<input
+								type="email"
+								{...register("email", { required: "Email is required" })}
+								className="input input-bordered w-full max-w-sm"
+							/>
+							{errors.email && (
+								<p className="text-red-700">{errors.email?.message}</p>
+							)}
 
-                {/* Email */}
-                <label className="label">
-                    <span className="label-text">Email</span>
-                </label>
-                <input type="email" {...register("email", { required: "Email is required" })} className="input input-bordered w-full max-w-sm" />
-                {errors.email && <p className='text-red-700'>{errors.email?.message}</p>}
+							{/* Password */}
+							<label className="label">
+								<span className="label-text">Password</span>
+							</label>
+							<input
+								type="password"
+								{...register("password", {
+									required: "Password is required",
+									minLength: {
+										value: 6,
+										message: "Password must be at least 6 characters",
+									},
+								})}
+								className="input input-bordered w-full max-w-sm"
+							/>
+							{errors.password && (
+								<p className="text-red-700">{errors.password?.message}</p>
+							)}
 
-                {/* Password */}
-                <label className="label">
-                    <span className="label-text">Password</span>
-                </label>
-                <input type="password" {...register("password", { required: "Password is required", minLength: { value: 6, message: 'Password must be at least 6 characters' } })} className="input input-bordered w-full max-w-sm" />
-                {errors.password && <p className='text-red-700'>{errors.password?.message}</p>}
-
-                {/* Submit button */}
-                {error && <p className='text-red-700'>{error}</p>}
-                <input type="submit" value="Sign Up" className='btn btn-accent w-full max-w-sm mt-5' />
-                <p>Already have an account? <Link to={'/login'} className="text-primary">Login</Link></p>
-                <div className="divider">OR</div>
-            </form>
-            <button onClick={handleGoogleLogin} className="btn btn-outline w-full max-w-sm">SignUp With Google</button>
-        </div>
-    );
+							{/* Submit button */}
+							{error && <p className="text-red-700">{error}</p>}
+							<input
+								type="submit"
+								value="Sign Up"
+								className="btn btn-accent w-full max-w-sm mt-5"
+							/>
+							<p>
+								Already have an account?{" "}
+								<Link to={"/login"} className="text-primary">
+									Login
+								</Link>
+							</p>
+							<div className="divider">OR</div>
+						</form>
+						<button
+							onClick={handleGoogleLogin}
+							className="btn btn-outline w-full max-w-sm">
+							SignUp With Google
+						</button>
+					</div>
+				</div>
+			</div>
+		);
 };
 
 export default Signup;
